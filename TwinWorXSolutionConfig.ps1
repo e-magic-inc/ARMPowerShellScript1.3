@@ -13,7 +13,7 @@ param(
       [string]$vmIP,
 	  [string]$vmName,
       [string]$digitalTwinHostUrl,
-      [string]$digitalTwinHostName
+      [string]$digitalTwinHostName,
       [string]$subscriptionId,
       [string]$resourceGroupName,
       [string]$pgServerName

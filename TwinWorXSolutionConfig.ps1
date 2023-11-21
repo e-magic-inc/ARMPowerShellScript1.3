@@ -197,7 +197,31 @@ $TwinWorXHistorianArchiveWinService='C:\TwinWorX-Solution\WindowServices\TwinWor
  $exePath = "C:\TwinWorX-Solution\Utilities\TwinWorXCryptography\TwinWorXCryptography.exe"
  $arguments = "encrypt"
 
- Start-Process -FilePath $exePath -ArgumentList $arguments -Wait
+ #Start-Process -FilePath $exePath -ArgumentList $arguments -Wait
+
+ # Start the process with redirected input
+ $processStartInfo = New-Object System.Diagnostics.ProcessStartInfo
+ $processStartInfo.FileName = $exePath
+ $processStartInfo.Arguments = $arguments
+ $processStartInfo.UseShellExecute = $false
+ $processStartInfo.RedirectStandardInput = $true
+ $processStartInfo.RedirectStandardOutput = $true
+ $processStartInfo.RedirectStandardError = $true
+ $processStartInfo.CreateNoWindow = $true
+ 
+ $process = New-Object System.Diagnostics.Process
+ $process.StartInfo = $processStartInfo
+ 
+ $process.Start() | Out-Null
+ 
+ # Send Enter key to the standard input stream
+ $process.StandardInput.WriteLine("`r")
+ 
+ # Wait for the process to complete
+ $process.WaitForExit()
+ 
+ # Close the process
+ $process.Close()
 #---------------------------------------------Firewall-----------------------------------------------------
 Import-Module NetSecurity
 New-NetFirewallRule -DisplayName "twxcustomRule" -Direction Inbound -LocalPort Any -Protocol TCP -Action Allow

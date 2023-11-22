@@ -39,7 +39,7 @@ $uri='https://management.azure.com/subscriptions/'+$subscriptionId+'/resourceGro
 
 Invoke-WebRequest $uri  -Headers $Header -Method 'POST'
 
-Start-Sleep -s 120
+Start-Sleep -s 180
 
 #################
 

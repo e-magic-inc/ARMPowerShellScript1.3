@@ -34,7 +34,7 @@ $Header = @{
     'Content-type' = 'application/json'
      Authorization =$btoken
 }
-$uri='https://management.azure.com/subscriptions/'+$subscriptionId+'/resourceGroups/'+$resourceGroupName+'/providers/Microsoft.DBforPostgreSQL/servers/'+$pgServerName+'/restart?api-version=2017-12-01'
+$uri='https://management.azure.com/subscriptions/'+$subscriptionId+'/resourceGroups/'+$resourceGroupName+'/providers/Microsoft.DBforPostgreSQL/flexibleServers/'+$pgServerName+'/restart?api-version=2023-06-01-preview'
 
 
 Invoke-WebRequest $uri  -Headers $Header -Method 'POST'

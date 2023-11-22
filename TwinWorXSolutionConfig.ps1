@@ -11,13 +11,12 @@ param(
       [string]$postgreUserName,
       [string]$postgrePassword,
       [string]$vmIP,
-	  [string]$vmName,
       [string]$digitalTwinHostUrl,
       [string]$digitalTwinHostName,
       [string]$subscriptionId,
       [string]$resourceGroupName,
-      [string]$pgServerName
-       
+      [string]$pgServerName,
+      [string]$sqlServerName
   )
 
 
@@ -47,8 +46,8 @@ Start-Sleep -s 120
 #-------------------Variable Declare and Initilize----------------------------
 $loginUsername='twxadmin'
 $loginPassword='Izt@1234'
-#$userEmail=''
-#$userPassword=''
+$userEmail='NA'
+$userPassword='NA'
 $iotHubConString='HostName='+$iothubname+'.azure-devices.net;SharedAccessKeyName='+$s_iotHubSasKeyName+';SharedAccessKey='+$iothubs_iotHubSasKey+''
 #$deviceId='IoTDevice01'
 $ConfigurationPortalUrl='http://'+$vmIP
@@ -175,9 +174,9 @@ $TwinWorXHistorianArchiveWinService='C:\TwinWorX-Solution\WindowServices\TwinWor
 (Get-Content $TwinWorXCommandingService).replace('{password}',$postgrePassword) | Set-Content $TwinWorXCommandingService
 
 #---------------------------------------ConfigurationPortal------------------------------------------------
-(Get-Content $ConfigurationPortal).replace('{vmname}',$vmName) | Set-Content $ConfigurationPortal
+(Get-Content $ConfigurationPortal).replace('{vmname}',$sqlServerName) | Set-Content $ConfigurationPortal
 
-(Get-Content $ConfigurationPortalSettings).replace('{vmname}',$vmName) | Set-Content $ConfigurationPortalSettings
+(Get-Content $ConfigurationPortalSettings).replace('{vmname}',$sqlServerName) | Set-Content $ConfigurationPortalSettings
 (Get-Content $ConfigurationPortalSettings).replace('{apigatewayurl}',$ApiGatewayUrl) | Set-Content $ConfigurationPortalSettings
 
 #---------------------------------------TwinWorXSchedulerExecution-----------------------------

@@ -5,7 +5,7 @@ param(
       [string]$s_iotHubSasKeyName,
       [string]$ConsumerGroup,
       [string]$eventhubname,
-      [string]$eventHubConnectionString,
+      [string]$iothubCompatibleEndpoint,
 	  [string]$blobstrgconstring,
       [string]$postgreHost,
       [string]$postgreUserName,
@@ -50,6 +50,7 @@ $userEmail='NA'
 $userPassword='NA'
 $iotHubConString='HostName='+$iothubname+'.azure-devices.net;SharedAccessKeyName='+$s_iotHubSasKeyName+';SharedAccessKey='+$iothubs_iotHubSasKey+''
 #$deviceId='IoTDevice01'
+$eventHubConnectionString='Endpoint='+$iothubCompatibleEndpoint+';SharedAccessKeyName='+$s_iotHubSasKeyName+';SharedAccessKey='+$iothubs_iotHubSasKey+';EntityPath='+$eventhubname+''
 $ConfigurationPortalUrl='http://'+$vmIP
 $ApiGatewayUrl='http://'+$vmIP+':1007'
 $TwinWorXServiceRegisteryPath = 'C:\TwinWorX-Solution\Microservices\TwinWorXServiceRegistery\appsettings.json'
